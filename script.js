@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    let employees = JSON.parse(localStorage.getItem("employees")) || [];
+    let employees = JSON.parse(localStorage.getItem("employees")) || jobs;
 
     function saveEmployees() {
         localStorage.setItem("employees", JSON.stringify(employees));
@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function displayJobs() {
         let jobList = document.getElementById("job-list");
+        if (!jobList) return;
+
         jobList.innerHTML = "";
         employees.forEach((job, index) => {
             let button = document.createElement("button");
@@ -21,16 +23,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function displayEmployees() {
         let job = JSON.parse(localStorage.getItem("selectedJob"));
-        if (!job) {
-            window.location.href = "index.html";
-            return;
-        }
+        if (!job) return;
 
-        employees = job.employees;
+        document.getElementById("job-title").textContent = job.jobTitle;
         let employeeList = document.getElementById("employee-list");
         employeeList.innerHTML = "";
 
-        employees.forEach((employee, index) => {
+        job.employees.forEach((employee, index) => {
             let row = document.createElement("tr");
 
             row.innerHTML = `
@@ -40,64 +39,47 @@ document.addEventListener("DOMContentLoaded", function () {
                 <td>${employee.job}</td>
                 <td>${employee.date}</td>
                 <td>${employee.visa}</td>
-                <td>${employee.salary} ريال</td>
-                <td><button onclick="editEmployee(${index})">تعديل</button></td>
-                <td><button onclick="removeEmployee(${index})">حذف</button></td>
+                <td>${employee.salary}</td>
+                <td>
+                    <button onclick="editEmployee(${index})">تعديل</button>
+                    <button onclick="deleteEmployee(${index})">حذف</button>
+                </td>
             `;
 
             employeeList.appendChild(row);
         });
     }
 
-    function editEmployee(index) {
-        let employee = employees[index];
+    window.editEmployee = function (index) {
+        let job = JSON.parse(localStorage.getItem("selectedJob"));
+        let employee = job.employees[index];
 
-        let newName = prompt("تعديل الاسم:", employee.name);
-        let newLocation = prompt("تعديل الموقع:", employee.location);
-        let newSalary = prompt("تعديل الراتب:", employee.salary);
+        let newName = prompt("أدخل الاسم الجديد", employee.name);
+        let newSalary = prompt("أدخل الراتب الجديد", employee.salary);
 
         if (newName) employee.name = newName;
-        if (newLocation) employee.location = newLocation;
         if (newSalary) employee.salary = parseFloat(newSalary);
 
+        job.employees[index] = employee;
+        localStorage.setItem("selectedJob", JSON.stringify(job));
+
         saveEmployees();
         displayEmployees();
-    }
+    };
 
-    function removeEmployee(index) {
-        if (confirm("هل أنت متأكد أنك تريد حذف هذا الموظف؟")) {
-            employees.splice(index, 1);
-            saveEmployees();
-            displayEmployees();
-        }
-    }
+    window.deleteEmployee = function (index) {
+        let job = JSON.parse(localStorage.getItem("selectedJob"));
+        job.employees.splice(index, 1);
 
-    function addEmployee() {
-        let newEmployee = {
-            id: prompt("رقم الوظيفة:"),
-            name: prompt("الاسم:"),
-            location: prompt("الموقع:"),
-            job: prompt("الوظيفة:"),
-            date: prompt("تاريخ التعيين:"),
-            visa: prompt("حالة الفيزا:"),
-            salary: parseFloat(prompt("إجمالي الراتب:")) || 0
-        };
-
-        employees.push(newEmployee);
+        localStorage.setItem("selectedJob", JSON.stringify(job));
         saveEmployees();
         displayEmployees();
-    }
+    };
 
-    function goBack() {
+    window.goBack = function () {
         window.location.href = "index.html";
-    }
+    };
 
-    if (document.getElementById("job-list")) {
-        displayJobs();
-    } else {
-        displayEmployees();
-    }
-
-    document.getElementById("add-employee").addEventListener("click", addEmployee);
-    document.getElementById("go-back").addEventListener("click", goBack);
+    if (document.getElementById("job-list")) displayJobs();
+    if (document.getElementById("employee-list")) displayEmployees();
 });
