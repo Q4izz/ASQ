@@ -1,97 +1,101 @@
-/* General Page Styles */
+/* General Styling */
 body {
-    font-family: Arial, sans-serif;
-    direction: rtl;
-    text-align: center;
-    background-color: #f8f9fa;
+    font-family: 'Arial', sans-serif;
+    direction: rtl; /* Right-to-left layout for Arabic */
+    text-align: right;
     margin: 0;
     padding: 0;
+    background-color: #f4f4f4;
 }
 
-/* Page Title */
-h1 {
-    background-color: #007bff;
-    color: white;
-    padding: 15px;
-    margin: 0;
-    font-size: 22px;
-}
-
-/* Button Styling */
-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 12px 18px;
-    margin: 8px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 6px;
-    transition: background 0.3s ease-in-out;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-/* Delete Button */
-button.delete-btn {
-    background-color: #dc3545;
-}
-
-button.delete-btn:hover {
-    background-color: #c82333;
-}
-
-/* Form Fields */
-input {
-    padding: 10px;
-    margin: 5px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 92%;
-    max-width: 350px;
-}
-
-/* Table Styles */
-table {
-    width: 95%;
-    max-width: 850px;
+/* Container */
+.container {
+    width: 90%;
+    max-width: 600px;
     margin: 20px auto;
-    border-collapse: collapse;
-    background-color: white;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-th, td {
-    border: 1px solid #ddd;
-    padding: 12px;
-    font-size: 16px;
+/* Header */
+h1 {
+    text-align: center;
+    color: #333;
 }
 
-th {
-    background-color: #007bff;
+/* Buttons */
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    background: #007bff;
     color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
 }
 
-/* Responsive Design for iPhone */
-@media (max-width: 768px) {
-    body {
-        font-size: 14px;
-    }
+button:hover {
+    background: #0056b3;
+}
 
-    table {
-        font-size: 14px;
-        width: 100%;
-    }
+/* Job List */
+#job-list button {
+    background: #28a745;
+}
 
-    button {
-        width: 90%;
-        padding: 10px;
-    }
+#job-list button:hover {
+    background: #218838;
+}
 
-    input {
-        width: 95%;
-    }
+/* Employee List */
+.employee-card {
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.employee-card p {
+    margin: 5px 0;
+}
+
+/* Edit, Add, and Delete Buttons */
+.edit-btn {
+    background: #ffc107;
+}
+
+.edit-btn:hover {
+    background: #e0a800;
+}
+
+.add-btn {
+    background: #17a2b8;
+}
+
+.add-btn:hover {
+    background: #138496;
+}
+
+.delete-btn {
+    background: #dc3545;
+}
+
+.delete-btn:hover {
+    background: #c82333;
+}
+
+/* Back Button */
+.back-btn {
+    background: #6c757d;
+}
+
+.back-btn:hover {
+    background: #5a6268;
 }
