@@ -3,15 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الموظفون</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-<!DOCTYPE html>
-<html lang="ar">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>قائمة الموظفين</title>
     <link rel="stylesheet" href="style.css">
     <script defer src="data.js"></script>
@@ -41,41 +32,5 @@
     <button id="add-employee">إضافة موظف</button>
     <button id="go-back">رجوع</button>
 
-</body>
-</html>
-
-    <h1 id="job-title">الموظفون</h1>
-    
-    <button onclick="goBack()">العودة</button>
-
-    <table>
-        <thead>
-            <tr>
-                <th>الرقم الوظيفي</th>
-                <th>الاسم</th>
-                <th>الموقع</th>
-                <th>الوظيفة</th>
-                <th>تاريخ التعيين</th>
-                <th>حالة الفيزا</th>
-                <th>إجمالي الراتب</th>
-                <th>الإجراءات</th>
-            </tr>
-        </thead>
-        <tbody id="employee-list"></tbody>
-    </table>
-
-    <h2>إضافة موظف جديد</h2>
-    <form id="add-employee-form">
-        <input type="text" id="new-name" placeholder="الاسم" required>
-        <input type="text" id="new-location" placeholder="الموقع" required>
-        <input type="text" id="new-job" placeholder="الوظيفة" required>
-        <input type="date" id="new-date" required>
-        <input type="text" id="new-visa" placeholder="حالة الفيزا" required>
-        <input type="number" id="new-salary" placeholder="إجمالي الراتب" required>
-        <button type="submit">إضافة</button>
-    </form>
-
-    <script src="data.js"></script>
-    <script src="script.js"></script>
 </body>
 </html>
