@@ -2,17 +2,17 @@
 <html lang="ar">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="إدارة الموظفين">
     <title>قائمة الموظفين</title>
     <link rel="stylesheet" href="style.css">
-    <script defer src="data.js"></script>
-    <script defer src="script.js"></script>
 </head>
 <body>
-
     <h1>قائمة الموظفين</h1>
-    
-    <table border="1">
+    <button id="back-btn">الرجوع إلى الصفحة الرئيسية</button>
+    <table>
         <thead>
             <tr>
                 <th>الرقم الوظيفي</th>
@@ -22,15 +22,29 @@
                 <th>تاريخ التعيين</th>
                 <th>حالة الفيزا</th>
                 <th>إجمالي الراتب</th>
-                <th>تعديل</th>
-                <th>حذف</th>
+                <th>إجراءات</th>
             </tr>
         </thead>
         <tbody id="employee-list"></tbody>
     </table>
+    <button id="add-employee-btn">إضافة موظف</button>
 
-    <button id="add-employee">إضافة موظف</button>
-    <button id="go-back">رجوع</button>
-
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+    <script>
+      // Define global functions that are missing
+      function goBack() {
+        window.location.href = "index.html";
+      }
+      
+      // When the DOM content is loaded
+      document.addEventListener("DOMContentLoaded", function() {
+        // Add event listeners to buttons
+        document.getElementById("back-btn").addEventListener("click", goBack);
+        document.getElementById("add-employee-btn").addEventListener("click", function() {
+          window.addEmployee();
+        });
+      });
+    </script>
 </body>
 </html>
