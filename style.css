@@ -46,11 +46,11 @@ button:hover {
 
 /* Job List */
 #job-list button {
-    background: #28a745;
+    background: #007bff;
 }
 
 #job-list button:hover {
-    background: #218838;
+    background: #0056b3;
 }
 
 /* Employee List */
