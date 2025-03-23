@@ -66,6 +66,21 @@ button:hover {
     margin: 5px 0;
 }
 
+/* Summary Section */
+.summary-section {
+    background-color: #e9f7ef;
+    border: 1px solid #27ae60;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 15px 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#employee-count, #total-salary {
+    margin: 5px 0;
+}
+
 /* Edit, Add, and Delete Buttons */
 .edit-btn {
     background: #ffc107;
