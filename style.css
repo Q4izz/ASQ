@@ -128,3 +128,90 @@ tr:nth-child(even) {
         padding: 10px 5px;
     }
 }
+
+/* Improved responsive design for various devices */
+@media (max-width: 1024px) {
+  /* Tablet/iPad adjustments */
+  body {
+    padding: 15px;
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+  
+  #job-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  
+  #job-list button {
+    margin: 0;
+  }
+  
+  .summary-section {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Phone/small tablet adjustments */
+  body {
+    padding: 10px;
+  }
+  
+  h1 {
+    font-size: 20px;
+  }
+  
+  #job-list {
+    grid-template-columns: 1fr;
+  }
+  
+  button {
+    padding: 14px; /* Larger tap targets */
+  }
+  
+  .summary-section {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  /* Table improvements for small screens */
+  table {
+    font-size: 14px;
+  }
+  
+  th, td {
+    padding: 8px 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Small phone adjustments */
+  h1 {
+    font-size: 18px;
+  }
+  
+  button {
+    padding: 16px; /* Even larger tap targets for small phones */
+  }
+  
+  /* Make table horizontal scrollable on very small screens */
+  table {
+    font-size: 12px;
+  }
+}
+
+/* Add safe area insets for notched iPhones */
+@supports (padding: max(0px)) {
+  body {
+    padding-left: max(10px, env(safe-area-inset-left));
+    padding-right: max(10px, env(safe-area-inset-right));
+    padding-bottom: max(10px, env(safe-area-inset-bottom));
+  }
+}
