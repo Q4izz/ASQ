@@ -34,8 +34,15 @@ document.addEventListener("DOMContentLoaded", function () {
         // Clear the table body
         employeeList.innerHTML = "";
         
+        // Calculate totals
+        let totalEmployees = job.employees.length;
+        let totalSalary = 0;
+        
         // Create table rows instead of divs
         job.employees.forEach((employee, index) => {
+            // Add to total salary
+            totalSalary += Number(employee.salary);
+            
             let row = document.createElement("tr");
             row.innerHTML = `
                 <td>${employee.id}</td>
@@ -44,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <td>${employee.job}</td>
                 <td>${employee.date}</td>
                 <td>${employee.visa}</td>
-                <td>${employee.salary} ريال</td>
+                <td>${employee.salary} درهم</td>
                 <td>
                     <button onclick="editEmployee(${jobIndex}, ${index})">تعديل</button>
                     <button onclick="removeEmployee(${jobIndex}, ${index})">حذف</button>
@@ -52,6 +59,19 @@ document.addEventListener("DOMContentLoaded", function () {
             `;
             employeeList.appendChild(row);
         });
+        
+        // Update summary section
+        updateSummary(totalEmployees, totalSalary);
+    }
+    
+    function updateSummary(employeeCount, totalSalary) {
+        let employeeCountElement = document.getElementById("employee-count");
+        let totalSalaryElement = document.getElementById("total-salary");
+        
+        if (employeeCountElement && totalSalaryElement) {
+            employeeCountElement.textContent = `العدد الإجمالي للموظفين: ${employeeCount}`;
+            totalSalaryElement.textContent = `إجمالي الرواتب: ${totalSalary} درهم`;
+        }
     }
 
     window.goBack = function () {
