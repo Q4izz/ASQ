@@ -81,31 +81,6 @@ button:hover {
     margin: 5px 0;
 }
 
-/* Edit, Add, and Delete Buttons */
-.edit-btn {
-    background: #ffc107;
-}
-
-.edit-btn:hover {
-    background: #e0a800;
-}
-
-.add-btn {
-    background: #17a2b8;
-}
-
-.add-btn:hover {
-    background: #138496;
-}
-
-.delete-btn {
-    background: #dc3545;
-}
-
-.delete-btn:hover {
-    background: #c82333;
-}
-
 /* Back Button */
 .back-btn {
     background: #6c757d;
