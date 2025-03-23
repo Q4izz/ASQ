@@ -7,9 +7,11 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <h1 id="job-title">الموظفون</h1>
-    <button onclick="goBack()">رجوع</button>
-    <button onclick="addEmployee()">إضافة موظف</button>
+    
+    <button onclick="goBack()">العودة</button>
+
     <table>
         <thead>
             <tr>
@@ -20,11 +22,23 @@
                 <th>تاريخ التعيين</th>
                 <th>حالة الفيزا</th>
                 <th>إجمالي الراتب</th>
-                <th>إجراءات</th>
+                <th>الإجراءات</th>
             </tr>
         </thead>
         <tbody id="employee-list"></tbody>
     </table>
+
+    <h2>إضافة موظف جديد</h2>
+    <form id="add-employee-form">
+        <input type="text" id="new-name" placeholder="الاسم" required>
+        <input type="text" id="new-location" placeholder="الموقع" required>
+        <input type="text" id="new-job" placeholder="الوظيفة" required>
+        <input type="date" id="new-date" required>
+        <input type="text" id="new-visa" placeholder="حالة الفيزا" required>
+        <input type="number" id="new-salary" placeholder="إجمالي الراتب" required>
+        <button type="submit">إضافة</button>
+    </form>
+
     <script src="data.js"></script>
     <script src="script.js"></script>
 </body>
