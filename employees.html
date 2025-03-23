@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>قائمة الموظفين</title>
+    <title>الموظفون</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1 id="job-title"></h1>
+    <h1 id="job-title">الموظفون</h1>
+    <button onclick="goBack()">رجوع</button>
+    <button onclick="addEmployee()">إضافة موظف</button>
     <table>
         <thead>
             <tr>
@@ -18,15 +20,11 @@
                 <th>تاريخ التعيين</th>
                 <th>حالة الفيزا</th>
                 <th>إجمالي الراتب</th>
-                <th>الإجراءات</th>
+                <th>إجراءات</th>
             </tr>
         </thead>
         <tbody id="employee-list"></tbody>
     </table>
-
-    <button id="add-employee">إضافة موظف</button>
-    <button onclick="goBack()">رجوع</button>
-
     <script src="data.js"></script>
     <script src="script.js"></script>
 </body>
