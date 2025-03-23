@@ -62,14 +62,44 @@ document.addEventListener("DOMContentLoaded", function () {
         let jobIndex = localStorage.getItem("selectedJob");
         let job = employeesData[jobIndex];
 
+        // Get and validate employee ID
+        let id = prompt("أدخل الرقم الوظيفي:");
+        if (!id) return; // User cancelled or entered empty value
+        
+        // Get and validate name
+        let name = prompt("أدخل اسم الموظف:");
+        if (!name) return;
+        
+        // Get location
+        let location = prompt("أدخل الموقع:");
+        if (!location) location = "غير محدد";
+        
+        // Get hire date
+        let date = prompt("أدخل تاريخ التعيين:");
+        if (!date) date = "غير محدد";
+        
+        // Get visa status
+        let visa = prompt("أدخل حالة الفيزا:");
+        if (!visa) visa = "غير محدد";
+        
+        // Get and validate salary
+        let salary = prompt("أدخل الراتب:");
+        if (!salary) salary = "0";
+        
+        // Make sure salary is a number
+        if (isNaN(salary)) {
+            alert("الرجاء إدخال رقم صحيح للراتب");
+            salary = "0";
+        }
+
         let newEmployee = {
-            id: prompt("أدخل الرقم الوظيفي:"),
-            name: prompt("أدخل اسم الموظف:"),
-            location: prompt("أدخل الموقع:"),
+            id: id,
+            name: name,
+            location: location,
             job: job.jobTitle,
-            date: prompt("أدخل تاريخ التعيين:"),
-            visa: prompt("أدخل حالة الفيزا:"),
-            salary: prompt("أدخل الراتب:")
+            date: date,
+            visa: visa,
+            salary: salary
         };
 
         job.employees.push(newEmployee);
@@ -81,24 +111,49 @@ document.addEventListener("DOMContentLoaded", function () {
         let job = employeesData[jobIndex];
         let employee = job.employees[employeeIndex];
 
-        employee.name = prompt("أدخل الاسم الجديد:", employee.name);
-        employee.location = prompt("أدخل الموقع الجديد:", employee.location);
-        employee.date = prompt("أدخل تاريخ التعيين الجديد:", employee.date);
-        employee.visa = prompt("أدخل حالة الفيزا الجديدة:", employee.visa);
-        employee.salary = prompt("أدخل الراتب الجديد:", employee.salary);
+        // Get updated values with current values as defaults
+        let name = prompt("أدخل الاسم الجديد:", employee.name);
+        if (name === null) name = employee.name; // User cancelled, keep original
+        
+        let location = prompt("أدخل الموقع الجديد:", employee.location);
+        if (location === null) location = employee.location;
+        
+        let date = prompt("أدخل تاريخ التعيين الجديد:", employee.date);
+        if (date === null) date = employee.date;
+        
+        let visa = prompt("أدخل حالة الفيزا الجديدة:", employee.visa);
+        if (visa === null) visa = employee.visa;
+        
+        let salary = prompt("أدخل الراتب الجديد:", employee.salary);
+        if (salary === null) {
+            salary = employee.salary;
+        } else if (isNaN(salary)) {
+            alert("الرجاء إدخال رقم صحيح للراتب");
+            salary = employee.salary;
+        }
+
+        // Update employee data
+        employee.name = name;
+        employee.location = location;
+        employee.date = date;
+        employee.visa = visa;
+        employee.salary = salary;
 
         saveEmployees();
         displayEmployees();
     };
 
     window.removeEmployee = function (jobIndex, employeeIndex) {
-        let job = employeesData[jobIndex];
-        job.employees.splice(employeeIndex, 1);
-
-        saveEmployees();
-        displayEmployees();
+        // Add confirmation before deleting
+        if (confirm("هل أنت متأكد من حذف هذا الموظف؟")) {
+            let job = employeesData[jobIndex];
+            job.employees.splice(employeeIndex, 1);
+            saveEmployees();
+            displayEmployees();
+        }
     };
 
+    // Initialize displays
     if (document.getElementById("job-list")) {
         displayJobs();
     } else {
