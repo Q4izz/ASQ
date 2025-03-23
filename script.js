@@ -1,20 +1,18 @@
 document.addEventListener("DOMContentLoaded", function () {
-    let employeesData = JSON.parse(localStorage.getItem("employees")) || jobs;
+    let employees = JSON.parse(localStorage.getItem("employees")) || [];
 
     function saveEmployees() {
-        localStorage.setItem("employees", JSON.stringify(employeesData));
+        localStorage.setItem("employees", JSON.stringify(employees));
     }
 
     function displayJobs() {
         let jobList = document.getElementById("job-list");
-        if (!jobList) return;
-
         jobList.innerHTML = "";
-        employeesData.forEach((job, index) => {
+        employees.forEach((job, index) => {
             let button = document.createElement("button");
             button.textContent = job.jobTitle;
             button.addEventListener("click", function () {
-                localStorage.setItem("selectedJob", index);
+                localStorage.setItem("selectedJob", JSON.stringify(job));
                 window.location.href = "employees.html";
             });
             jobList.appendChild(button);
@@ -22,79 +20,84 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function displayEmployees() {
+        let job = JSON.parse(localStorage.getItem("selectedJob"));
+        if (!job) {
+            window.location.href = "index.html";
+            return;
+        }
+
+        employees = job.employees;
         let employeeList = document.getElementById("employee-list");
-        if (!employeeList) return;
+        employeeList.innerHTML = "";
 
-        let jobIndex = localStorage.getItem("selectedJob");
-        let job = employeesData[jobIndex];
+        employees.forEach((employee, index) => {
+            let row = document.createElement("tr");
 
-        employeeList.innerHTML = `<h2>${job.jobTitle}</h2>`;
-        job.employees.forEach((employee, index) => {
-            let div = document.createElement("div");
-            div.classList.add("employee");
-            div.innerHTML = `
-                <p><strong>الرقم الوظيفي:</strong> ${employee.id}</p>
-                <p><strong>الاسم:</strong> ${employee.name}</p>
-                <p><strong>الموقع:</strong> ${employee.location}</p>
-                <p><strong>الوظيفة:</strong> ${employee.job}</p>
-                <p><strong>تاريخ التعيين:</strong> ${employee.date}</p>
-                <p><strong>حالة الفيزا:</strong> ${employee.visa}</p>
-                <p><strong>إجمالي الراتب:</strong> ${employee.salary} ريال</p>
-                <button onclick="editEmployee(${jobIndex}, ${index})">تعديل</button>
-                <button onclick="removeEmployee(${jobIndex}, ${index})">حذف</button>
+            row.innerHTML = `
+                <td>${employee.id}</td>
+                <td>${employee.name}</td>
+                <td>${employee.location}</td>
+                <td>${employee.job}</td>
+                <td>${employee.date}</td>
+                <td>${employee.visa}</td>
+                <td>${employee.salary} ريال</td>
+                <td><button onclick="editEmployee(${index})">تعديل</button></td>
+                <td><button onclick="removeEmployee(${index})">حذف</button></td>
             `;
-            employeeList.appendChild(div);
+
+            employeeList.appendChild(row);
         });
     }
 
-    window.goBack = function () {
-        window.location.href = "index.html";
-    };
+    function editEmployee(index) {
+        let employee = employees[index];
 
-    window.addEmployee = function () {
-        let jobIndex = localStorage.getItem("selectedJob");
-        let job = employeesData[jobIndex];
+        let newName = prompt("تعديل الاسم:", employee.name);
+        let newLocation = prompt("تعديل الموقع:", employee.location);
+        let newSalary = prompt("تعديل الراتب:", employee.salary);
 
+        if (newName) employee.name = newName;
+        if (newLocation) employee.location = newLocation;
+        if (newSalary) employee.salary = parseFloat(newSalary);
+
+        saveEmployees();
+        displayEmployees();
+    }
+
+    function removeEmployee(index) {
+        if (confirm("هل أنت متأكد أنك تريد حذف هذا الموظف؟")) {
+            employees.splice(index, 1);
+            saveEmployees();
+            displayEmployees();
+        }
+    }
+
+    function addEmployee() {
         let newEmployee = {
-            id: prompt("أدخل الرقم الوظيفي:"),
-            name: prompt("أدخل اسم الموظف:"),
-            location: prompt("أدخل الموقع:"),
-            job: job.jobTitle,
-            date: prompt("أدخل تاريخ التعيين:"),
-            visa: prompt("أدخل حالة الفيزا:"),
-            salary: prompt("أدخل الراتب:")
+            id: prompt("رقم الوظيفة:"),
+            name: prompt("الاسم:"),
+            location: prompt("الموقع:"),
+            job: prompt("الوظيفة:"),
+            date: prompt("تاريخ التعيين:"),
+            visa: prompt("حالة الفيزا:"),
+            salary: parseFloat(prompt("إجمالي الراتب:")) || 0
         };
 
-        job.employees.push(newEmployee);
+        employees.push(newEmployee);
         saveEmployees();
         displayEmployees();
-    };
+    }
 
-    window.editEmployee = function (jobIndex, employeeIndex) {
-        let job = employeesData[jobIndex];
-        let employee = job.employees[employeeIndex];
-
-        employee.name = prompt("أدخل الاسم الجديد:", employee.name);
-        employee.location = prompt("أدخل الموقع الجديد:", employee.location);
-        employee.date = prompt("أدخل تاريخ التعيين الجديد:", employee.date);
-        employee.visa = prompt("أدخل حالة الفيزا الجديدة:", employee.visa);
-        employee.salary = prompt("أدخل الراتب الجديد:", employee.salary);
-
-        saveEmployees();
-        displayEmployees();
-    };
-
-    window.removeEmployee = function (jobIndex, employeeIndex) {
-        let job = employeesData[jobIndex];
-        job.employees.splice(employeeIndex, 1);
-
-        saveEmployees();
-        displayEmployees();
-    };
+    function goBack() {
+        window.location.href = "index.html";
+    }
 
     if (document.getElementById("job-list")) {
         displayJobs();
     } else {
         displayEmployees();
     }
+
+    document.getElementById("add-employee").addEventListener("click", addEmployee);
+    document.getElementById("go-back").addEventListener("click", goBack);
 });
