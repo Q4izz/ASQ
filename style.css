@@ -1,39 +1,40 @@
-/* General styles */
+/* General Page Styles */
 body {
     font-family: Arial, sans-serif;
     direction: rtl;
     text-align: center;
-    background-color: #f9f9f9;
+    background-color: #f8f9fa;
     margin: 0;
     padding: 0;
 }
 
-/* Page title */
+/* Page Title */
 h1 {
     background-color: #007bff;
     color: white;
     padding: 15px;
     margin: 0;
-    font-size: 24px;
+    font-size: 22px;
 }
 
-/* Buttons */
+/* Button Styling */
 button {
-    background-color: #28a745;
+    background-color: #007bff;
     color: white;
     border: none;
-    padding: 10px 15px;
-    margin: 5px;
+    padding: 12px 18px;
+    margin: 8px;
     font-size: 16px;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 6px;
+    transition: background 0.3s ease-in-out;
 }
 
 button:hover {
-    background-color: #218838;
+    background-color: #0056b3;
 }
 
-/* Red button for delete */
+/* Delete Button */
 button.delete-btn {
     background-color: #dc3545;
 }
@@ -42,21 +43,21 @@ button.delete-btn:hover {
     background-color: #c82333;
 }
 
-/* Form input fields */
+/* Form Fields */
 input {
     padding: 10px;
     margin: 5px;
-    font-size: 14px;
+    font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    width: 90%;
-    max-width: 300px;
+    width: 92%;
+    max-width: 350px;
 }
 
-/* Table styles */
+/* Table Styles */
 table {
     width: 95%;
-    max-width: 800px;
+    max-width: 850px;
     margin: 20px auto;
     border-collapse: collapse;
     background-color: white;
@@ -65,7 +66,7 @@ table {
 
 th, td {
     border: 1px solid #ddd;
-    padding: 10px;
+    padding: 12px;
     font-size: 16px;
 }
 
@@ -74,7 +75,7 @@ th {
     color: white;
 }
 
-/* Responsive Design for iPhones */
+/* Responsive Design for iPhone */
 @media (max-width: 768px) {
     body {
         font-size: 14px;
@@ -82,10 +83,12 @@ th {
 
     table {
         font-size: 14px;
+        width: 100%;
     }
 
     button {
         width: 90%;
+        padding: 10px;
     }
 
     input {
