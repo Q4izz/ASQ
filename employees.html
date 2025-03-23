@@ -5,14 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>قائمة الموظفين</title>
     <link rel="stylesheet" href="style.css">
-    <script defer src="data.js"></script>
-    <script defer src="script.js"></script>
 </head>
 <body>
-
-    <h1>قائمة الموظفين</h1>
-    
-    <table border="1">
+    <h1 id="job-title"></h1>
+    <table>
         <thead>
             <tr>
                 <th>الرقم الوظيفي</th>
@@ -22,15 +18,16 @@
                 <th>تاريخ التعيين</th>
                 <th>حالة الفيزا</th>
                 <th>إجمالي الراتب</th>
-                <th>تعديل</th>
-                <th>حذف</th>
+                <th>الإجراءات</th>
             </tr>
         </thead>
         <tbody id="employee-list"></tbody>
     </table>
 
     <button id="add-employee">إضافة موظف</button>
-    <button id="go-back">رجوع</button>
+    <button onclick="goBack()">رجوع</button>
 
+    <script src="data.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
