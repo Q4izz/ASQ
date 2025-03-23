@@ -11,7 +11,7 @@
 </head>
 <body>
     <h1>قائمة الموظفين</h1>
-    <button id="back-btn">الرجوع إلى الصفحة الرئيسية</button>
+    <button id="back-btn" onclick="window.goBack()">الرجوع إلى الصفحة الرئيسية</button>
     <table>
         <thead>
             <tr>
@@ -27,24 +27,9 @@
         </thead>
         <tbody id="employee-list"></tbody>
     </table>
-    <button id="add-employee-btn">إضافة موظف</button>
+    <button id="add-employee-btn" onclick="window.addEmployee()">إضافة موظف</button>
 
     <script src="data.js"></script>
     <script src="script.js"></script>
-    <script>
-      // Define global functions that are missing
-      function goBack() {
-        window.location.href = "index.html";
-      }
-      
-      // When the DOM content is loaded
-      document.addEventListener("DOMContentLoaded", function() {
-        // Add event listeners to buttons
-        document.getElementById("back-btn").addEventListener("click", goBack);
-        document.getElementById("add-employee-btn").addEventListener("click", function() {
-          window.addEmployee();
-        });
-      });
-    </script>
 </body>
 </html>
