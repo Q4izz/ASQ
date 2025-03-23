@@ -1,65 +1,36 @@
-document.addEventListener("DOMContentLoaded", function () {
-    let job = JSON.parse(localStorage.getItem("selectedJob"));
-    let jobIndex = localStorage.getItem("selectedJobIndex");
-    let employees = JSON.parse(localStorage.getItem("employees")) || [];
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قائمة الموظفين</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="data.js"></script>
+    <script defer src="script.js"></script>
+</head>
+<body>
 
-    function saveEmployees() {
-        employees[jobIndex] = job;
-        localStorage.setItem("employees", JSON.stringify(employees));
-    }
+    <h1>قائمة الموظفين</h1>
+    
+    <table border="1">
+        <thead>
+            <tr>
+                <th>الرقم الوظيفي</th>
+                <th>الاسم</th>
+                <th>الموقع</th>
+                <th>الوظيفة</th>
+                <th>تاريخ التعيين</th>
+                <th>حالة الفيزا</th>
+                <th>إجمالي الراتب</th>
+                <th>تعديل</th>
+                <th>حذف</th>
+            </tr>
+        </thead>
+        <tbody id="employee-list"></tbody>
+    </table>
 
-    function displayEmployees() {
-        let employeeList = document.getElementById("employee-list");
-        let totalSalaryEl = document.getElementById("total-salary");
-        employeeList.innerHTML = "";
+    <button id="add-employee">إضافة موظف</button>
+    <button id="go-back">رجوع</button>
 
-        let totalSalary = 0;
-        job.employees.forEach((employee, index) => {
-            totalSalary += employee.salary;
-
-            let row = document.createElement("tr");
-            row.innerHTML = `
-                <td>${employee.id}</td>
-                <td>${employee.name}</td>
-                <td>${employee.location}</td>
-                <td>${employee.job}</td>
-                <td>${employee.date}</td>
-                <td>${employee.visa}</td>
-                <td>${employee.salary} ريال</td>
-                <td>
-                    <button onclick="editEmployee(${index})">تعديل</button>
-                    <button onclick="deleteEmployee(${index})">حذف</button>
-                </td>
-            `;
-            employeeList.appendChild(row);
-        });
-
-        totalSalaryEl.textContent = `إجمالي الراتب: ${totalSalary} ريال`;
-    }
-
-    window.editEmployee = function (index) {
-        let employee = job.employees[index];
-        let newName = prompt("أدخل الاسم الجديد:", employee.name);
-        let newLocation = prompt("أدخل الموقع الجديد:", employee.location);
-        let newSalary = prompt("أدخل الراتب الجديد:", employee.salary);
-
-        if (newName) employee.name = newName;
-        if (newLocation) employee.location = newLocation;
-        if (newSalary) employee.salary = parseFloat(newSalary);
-
-        saveEmployees();
-        displayEmployees();
-    };
-
-    window.deleteEmployee = function (index) {
-        job.employees.splice(index, 1);
-        saveEmployees();
-        displayEmployees();
-    };
-
-    document.getElementById("go-back").addEventListener("click", function () {
-        window.location.href = "index.html";
-    });
-
-    displayEmployees();
-});
+</body>
+</html>
