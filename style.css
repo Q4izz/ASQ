@@ -1,101 +1,49 @@
-/* General Styling */
 body {
-    font-family: 'Arial', sans-serif;
-    direction: rtl; /* Right-to-left layout for Arabic */
-    text-align: right;
-    margin: 0;
-    padding: 0;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    direction: rtl;
     background-color: #f4f4f4;
 }
 
-/* Container */
-.container {
-    width: 90%;
-    max-width: 600px;
-    margin: 20px auto;
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Header */
 h1 {
-    text-align: center;
     color: #333;
 }
 
-/* Buttons */
-button {
-    display: block;
-    width: 100%;
+table {
+    width: 90%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background: white;
+}
+
+th, td {
     padding: 10px;
-    margin: 10px 0;
-    background: #007bff;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #007bff;
     color: white;
+}
+
+button {
+    padding: 8px 12px;
+    margin: 5px;
     border: none;
-    border-radius: 5px;
-    font-size: 16px;
     cursor: pointer;
-    transition: background 0.3s;
+    font-size: 16px;
 }
 
 button:hover {
-    background: #0056b3;
+    opacity: 0.8;
 }
 
-/* Job List */
-#job-list button {
-    background: #28a745;
+button:first-child {
+    background-color: #28a745;
+    color: white;
 }
 
-#job-list button:hover {
-    background: #218838;
-}
-
-/* Employee List */
-.employee-card {
-    background: white;
-    padding: 10px;
-    border-radius: 5px;
-    margin: 10px 0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.employee-card p {
-    margin: 5px 0;
-}
-
-/* Edit, Add, and Delete Buttons */
-.edit-btn {
-    background: #ffc107;
-}
-
-.edit-btn:hover {
-    background: #e0a800;
-}
-
-.add-btn {
-    background: #17a2b8;
-}
-
-.add-btn:hover {
-    background: #138496;
-}
-
-.delete-btn {
-    background: #dc3545;
-}
-
-.delete-btn:hover {
-    background: #c82333;
-}
-
-/* Back Button */
-.back-btn {
-    background: #6c757d;
-}
-
-.back-btn:hover {
-    background: #5a6268;
+button:last-child {
+    background-color: #dc3545;
+    color: white;
 }
